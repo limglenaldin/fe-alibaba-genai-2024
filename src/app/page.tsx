@@ -3,8 +3,12 @@
 import { useEffect, useState } from "react";
 import { apiConfig, apiHeaders } from "@/config/api";
 import OrderCard from "@/components/custom/card/OrderCard";
+import { useRouter } from "next/navigation";
+import { useOrder } from "@/contexts/OrderContext";
 
 export default function Home() {
+  const router = useRouter();
+  const { setOrder: setOrderContext } = useOrder();
   const [navTitle, setNavTitle] = useState<string>('Aktivitas')
   
   const [orders, setOrders] = useState<Order[]>([]);
@@ -16,6 +20,11 @@ export default function Home() {
     console.log("Clicked")
     // setOrder(order);
     // setNavTitle("Pesanan Dalam Perjalanan")
+  }
+
+  const handleClickBtnChat = (order: Order) => {
+    setOrderContext(order)
+    router.push("/chat")
   }
 
   useEffect(() => {
@@ -52,6 +61,7 @@ export default function Home() {
             key={order.OrderNumber}
             order={order}
             handleClick={handleClickCard}
+            handleBtnClick={handleClickBtnChat}
           />
         ))
         }

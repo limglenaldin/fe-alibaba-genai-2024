@@ -1,0 +1,3 @@
+interface GenAI {
+    output: string;
+}

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scrollbar-color: #bbbbbb #f1f1f1;
+  scrollbar-width: thin;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -21,7 +26,6 @@
     text-wrap: balance;
   }
 }
-
 
 @layer base {
   :root {

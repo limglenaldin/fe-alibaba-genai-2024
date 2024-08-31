@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
-import Link from "next/link";
 
 interface OrderCardProps {
   order: Order
   handleClick: (order: Order) => void
+  handleBtnClick: (order: Order) => void
 }
 
-export default function OrderCard({ order, handleClick }: OrderCardProps) {
+export default function OrderCard({ order, handleClick, handleBtnClick }: OrderCardProps) {
   const grandTotalPrice = new Intl.NumberFormat('id-ID', {
     style: 'currency',
     currency: 'IDR'
@@ -31,8 +31,8 @@ export default function OrderCard({ order, handleClick }: OrderCardProps) {
         </div>
       </CardContent>
       <CardFooter className="justify-end">
-        <Button asChild>
-          <Link href="/chat">Chat</Link>
+        <Button onClick={() => handleBtnClick(order)}>
+          Chat
         </Button>
       </CardFooter>
     </Card>
