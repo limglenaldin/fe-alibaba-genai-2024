@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { OrderProvider } from "@/contexts/OrderContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,9 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased bg-gray-200`}>
-        <div className={`bg-white h-screen flex flex-col max-w-md mx-auto`}>
-          {children}
-        </div>
+        <OrderProvider>
+          <div className={`bg-white h-screen flex flex-col max-w-md mx-auto`}>
+            {children}
+          </div>
+        </OrderProvider>
       </body>
     </html>
   );
