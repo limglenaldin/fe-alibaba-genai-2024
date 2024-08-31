@@ -3,7 +3,7 @@ interface Product {
     Name: string;
     Image: string;
     Description: string;
-    ProductWasted: ProductWaste[];
+    Wastes: ProductWaste[];
     Price: number;
     Quantity: number;
 }
@@ -11,5 +11,6 @@ interface Product {
 interface ProductWaste {
     ID: number;
     Name: string;
-    IsCutlery: boolean;
+    Type: string;
+    Category: string;
 }
