@@ -1,5 +1,5 @@
 interface Merchant {
-    id: number;
-    name: string;
-    image: string;
+    ID: number;
+    Name: string;
+    Image: string;
 }

@@ -1,15 +1,15 @@
 interface Product {
-    id: number;
-    name: string;
-    image: string;
-    description: string;
-    productWasted: ProductWaste[];
-    price: number;
-    quantity: number;
+    ID: number;
+    Name: string;
+    Image: string;
+    Description: string;
+    ProductWasted: ProductWaste[];
+    Price: number;
+    Quantity: number;
 }
 
 interface ProductWaste {
-    id: number;
-    name: string;
-    isCutlery: boolean;
+    ID: number;
+    Name: string;
+    IsCutlery: boolean;
 }
