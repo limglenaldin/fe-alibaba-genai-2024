@@ -1,6 +1,6 @@
 interface Order {
     ID: number;
-    OrderNumber: string;
+    OrderNo: string;
     Merchant: Merchant;
     Items: Product[];
     IsIncludeCutlery: boolean;

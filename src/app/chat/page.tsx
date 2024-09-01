@@ -2,15 +2,11 @@
 
 import ChatBubble from "@/components/custom/ChatBubble";
 import { Button } from "@/components/ui/button";
-import { apiConfig, apiHeaders } from "@/config/api";
-import { useOrder } from "@/contexts/OrderContext";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Chat() {
-  const { order } = useOrder();
-
   const [mockMessages, setMockMessages] = useState([
     {
       side: "driver",
@@ -33,37 +29,6 @@ export default function Chat() {
       message: "Baik, mohon ditunggu ya"
     },
   ])
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchGenerativeAI = async () => {
-      const payload = {
-        ...order,
-        "AdditionalWastes": [
-          {
-            "Quantity": 1,
-            "Name": "Tas Belanja",
-            "Type": "primary",
-            "Category": "reusable"
-          }
-        ]
-      }
-
-      const apiResponse = await fetch(`${apiConfig.API_URL}/v1/ai/generate`, {
-        method: "POST",
-        headers: apiHeaders,
-        body: JSON.stringify(payload)
-      });
-      const res: APIResponse<GenAI> = await apiResponse.json();
-
-      setMockMessages([...mockMessages, {
-        side: "system",
-        message: res.data.output
-      }])
-    };
-
-    fetchGenerativeAI();
-  }, []);
 
   return (
     <>

@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
+import { MouseEvent } from "react";
 
 interface OrderCardProps {
   order: Order
   handleClick: (order: Order) => void
-  handleBtnClick: (order: Order) => void
+  handleBtnClick: (e: MouseEvent<HTMLButtonElement>, order: Order, path: string) => void
 }
 
 export default function OrderCard({ order, handleClick, handleBtnClick }: OrderCardProps) {
@@ -30,9 +31,12 @@ export default function OrderCard({ order, handleClick, handleBtnClick }: OrderC
           <p className="text-sm"> { grandTotalPrice } </p>
         </div>
       </CardContent>
-      <CardFooter className="justify-end">
-        <Button onClick={() => handleBtnClick(order)}>
+      <CardFooter className="gap-2 justify-end">
+        <Button size="sm" onClick={(e) => handleBtnClick(e, order, "/chat")}>
           Chat
+        </Button>
+        <Button size="sm" onClick={(e) => handleBtnClick(e, order, "/chatai")}>
+          AI
         </Button>
       </CardFooter>
     </Card>

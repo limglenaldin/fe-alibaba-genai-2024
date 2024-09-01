@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { apiConfig, apiHeaders } from "@/config/api";
 import OrderCard from "@/components/custom/card/OrderCard";
 import { useRouter } from "next/navigation";
 import { useOrder } from "@/contexts/OrderContext";
+import Loading from "@/components/custom/Loading";
 
 export default function Home() {
   const router = useRouter();
@@ -22,9 +23,10 @@ export default function Home() {
     // setNavTitle("Pesanan Dalam Perjalanan")
   }
 
-  const handleClickBtnChat = (order: Order) => {
+  const handleClickBtnChat = (e: MouseEvent<HTMLButtonElement>, order: Order, path: string) => {
+    e.stopPropagation();
     setOrderContext(order)
-    router.push("/chat")
+    router.push(path)
   }
 
   useEffect(() => {
@@ -43,11 +45,7 @@ export default function Home() {
   }, []);
 
   if (isLoading) {
-    return (
-      <main className="container space-y-4 px-6">
-        <h1>Loading</h1>
-      </main>
-    )
+    return <Loading />
   }
   
   return (
@@ -55,10 +53,10 @@ export default function Home() {
       <div className="py-3 border-b-2 mb-6">
         <p className="px-6 text-lg font-bold">{ navTitle }</p>
       </div>
-      <main className="container space-y-4 px-6">
+      <main className="container space-y-4 px-6 overflow-y-scroll">
         { orders.map(order => (
           <OrderCard
-            key={order.OrderNumber}
+            key={order.OrderNo}
             order={order}
             handleClick={handleClickCard}
             handleBtnClick={handleClickBtnChat}
