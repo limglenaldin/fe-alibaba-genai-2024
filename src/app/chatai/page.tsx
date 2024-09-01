@@ -38,7 +38,10 @@ export default function ChatAI() {
       
       setMockMessage({
         side: "system",
-        message: res.data.output
+        message: {
+          preOutput: res.data.preOutput,
+          output: res.data.preOutput
+        }
       })
       setLoading(false);
     };
@@ -71,7 +74,11 @@ export default function ChatAI() {
       </div>
       <main className="space-y-4 px-6 flex flex-col overflow-y-scroll mb-6">
         <ChatBubble
-          message={mockMessage.message}
+          message={mockMessage.message.preOutput}
+          side={mockMessage.side}
+        />
+        <ChatBubble
+          message={mockMessage.message.output}
           side={mockMessage.side}
         />
       </main>

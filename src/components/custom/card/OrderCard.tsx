@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { formatToIDR } from "@/lib/utils";
 import Image from "next/image";
 import { MouseEvent } from "react";
 
@@ -10,15 +11,12 @@ interface OrderCardProps {
 }
 
 export default function OrderCard({ order, handleClick, handleBtnClick }: OrderCardProps) {
-  const grandTotalPrice = new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR'
-  }).format(order.Items.reduce(
+  const grandTotalPrice = formatToIDR(order.Items.reduce(
     (total, item) => total + item.Price * item.Quantity, 0
   ))
 
   return (
-    <Card className="shadow-md" onClick={() => handleClick(order)}>
+    <Card className="shadow-md cursor-pointer" onClick={() => handleClick(order)}>
       <CardContent className="flex flex-row !pt-6 gap-4">
         <Image
           src={order.Merchant.Image}

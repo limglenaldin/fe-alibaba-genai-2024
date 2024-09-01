@@ -9,23 +9,20 @@ import Loading from "@/components/custom/Loading";
 
 export default function Home() {
   const router = useRouter();
-  const { setOrder: setOrderContext } = useOrder();
-  const [navTitle, setNavTitle] = useState<string>('Aktivitas')
+  const { setOrder } = useOrder();
   
   const [orders, setOrders] = useState<Order[]>([]);
-  const [order, setOrder] = useState<Order>();
-
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleClickCard = (order: Order) => {
-    console.log("Clicked")
-    // setOrder(order);
-    // setNavTitle("Pesanan Dalam Perjalanan")
+    setOrder(order);
+
+    router.push(`/orders/detail`)
   }
 
   const handleClickBtnChat = (e: MouseEvent<HTMLButtonElement>, order: Order, path: string) => {
     e.stopPropagation();
-    setOrderContext(order)
+    setOrder(order)
     router.push(path)
   }
 
@@ -51,17 +48,17 @@ export default function Home() {
   return (
     <>
       <div className="py-3 border-b-2 mb-6">
-        <p className="px-6 text-lg font-bold">{ navTitle }</p>
+        <p className="px-6 text-lg font-bold">Aktivitas Pemesanan</p>
       </div>
       <main className="container space-y-4 px-6 overflow-y-scroll">
         { orders.map(order => (
-          <OrderCard
-            key={order.OrderNo}
-            order={order}
-            handleClick={handleClickCard}
-            handleBtnClick={handleClickBtnChat}
-          />
-        ))
+            <OrderCard
+              key={order.OrderNo}
+              order={order}
+              handleClick={handleClickCard}
+              handleBtnClick={handleClickBtnChat}
+            />
+          ))
         }
       </main>
     </>
