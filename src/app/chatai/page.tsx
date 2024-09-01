@@ -41,7 +41,7 @@ export default function ChatAI() {
         side: "system",
         message: {
           preOutput: res.data.preOutput,
-          output: res.data.preOutput
+          output: res.data.output
         }
       })
       setLoading(false);
