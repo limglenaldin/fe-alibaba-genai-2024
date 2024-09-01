@@ -28,6 +28,7 @@ export default function Detail() {
         <div className="overflow-y-auto">
           { order?.Items.map(item => (
               <ProductCard
+                key={item.ID}
                 product={item}
               />
             )) 
