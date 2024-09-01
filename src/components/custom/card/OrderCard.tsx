@@ -34,7 +34,7 @@ export default function OrderCard({ order, handleClick, handleBtnClick }: OrderC
           Chat
         </Button>
         <Button size="sm" onClick={(e) => handleBtnClick(e, order, "/chatai")}>
-          AI
+          WasaAI
         </Button>
       </CardFooter>
     </Card>
