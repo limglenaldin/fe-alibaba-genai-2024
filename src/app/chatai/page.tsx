@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function ChatAI() {
+  const aiName = process.env.NEXT_PUBLIC_AI_NAME ?? 'Asep Bensin';
   const { order } = useOrder();
 
   const [mockMessage, setMockMessage] = useState()
@@ -68,7 +69,7 @@ export default function ChatAI() {
             <AvatarImage src="https://github.com/shadcn.png" alt="Avatar" width={50} height={50} className="rounded-full"/>
           </Avatar>
           <div className="ml-4">
-            <p className="font-medium">Asep Bensin</p>
+            <p className="font-medium">{ aiName }</p>
           </div>
         </div>
       </div>
